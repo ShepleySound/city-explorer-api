@@ -7,7 +7,7 @@ const data = require('./data/weather.json');
 
 const app = express();
 
-app.use(cors);
+app.use(cors());
 
 const PORT = process.env.PORT || 3002;
 
@@ -18,8 +18,8 @@ app.get('/', (request, response) => {
 
 app.get('/weather', (request, response, next) => {
   try {
-    const lat = request.query.lat;
-    const lon = request.query.lon;
+    // const lat = request.query.lat;
+    // const lon = request.query.lon;
     const searchQuery = request.query.search_query;
     const dataResult = data.find(dataPoint => new RegExp(searchQuery, 'i').test(dataPoint.city_name));
     const forecastArray = dataResult.data.map(day => new Forecast(day));
