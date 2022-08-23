@@ -2,11 +2,13 @@
 
 const express = require('express');
 require('dotenv').config();
-const cors = require('cors')
+const cors = require('cors');
 const data = require('./data/weather.json');
 
 const app = express();
+
 app.use(cors);
+
 const PORT = process.env.PORT || 3002;
 
 // Base Route
@@ -40,8 +42,9 @@ app.get('*', (request, response) => {
   response.status(404).send('Sorry! This does not exist!');
 });
 
-app.listen(PORT, () => console.log(`Listening on PORT: ${PORT}`));
 
 app.use((error, request, response, next) => {
   response.status(500).send(error.message);
 });
+
+app.listen(PORT, () => console.log(`Listening on PORT: ${PORT}`));
