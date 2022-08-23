@@ -18,16 +18,20 @@ app.get('/weather', (request, response, next) => {
     const lon = request.query.lon;
     const searchQuery = request.query.searchQuery;
     const dataResult = data.find(dataPoint => new RegExp(searchQuery, 'i').test(dataPoint.city_name));
-    // const receivedData = data.find(pet => pet.species === species);
-    // const groomedData = receivedData.map(petData => new Pet(petData));
+    const forecastArray = dataResult.data.map(day => new Forecast(day));
     console.log(searchQuery)
-    response.status(200).send(dataResult);
+    response.status(200).send(forecastArray);
   } catch (error) {
     next(error);
   }
 });
 
-
+class Forecast {
+  constructor(weatherObj) {
+    this.date = weatherObj.datetime;
+    this.description = weatherObj.weather.description;
+  }
+}
 
 // Catch all. Sends a 404 error when path/route does not exist.
 app.get('*', (request, response) => {
