@@ -1,7 +1,7 @@
 'use strict';
 
-const express = require('express');
 require('dotenv').config();
+const express = require('express');
 const cors = require('cors');
 const axios = require('axios').default;
 
@@ -21,9 +21,7 @@ app.get('/weather', async (request, response, next) => {
     const lat = request.query.lat;
     const lon = request.query.lon;
     const weatherResponse = await axios.get(`https://api.weatherbit.io/v2.0/forecast/daily?lat=${lat}&lon=${lon}&key=${process.env.WEATHER_API_KEY}&units=I&days=3`);
-    // const dataResult = weatherResponse.data.find(dataPoint => dataPoint?.city_name.toLowerCase().includes(searchQuery?.toLowerCase()));
-    const dataResult = weatherResponse.data;
-    console.log(dataResult);
+    const dataResult = weatherResponse?.data;
     const forecastArray = dataResult?.data.map(day => new Forecast(day));
     response.status(200).send(forecastArray);
   } catch (error) {
