@@ -13,7 +13,6 @@ const PORT = process.env.PORT || 3002;
 
 // Base Route
 app.get('/', (request, response) => {
-  response.send('hello')
   response.status(200).send('Welcome to the server!');
 });
 
