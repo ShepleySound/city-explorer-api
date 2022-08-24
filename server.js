@@ -45,6 +45,7 @@ app.get('*', (request, response) => {
 });
 
 
+// eslint-disable-next-line no-unused-vars
 app.use((error, request, response, next) => {
   response.status(500).send(error.message);
 });
