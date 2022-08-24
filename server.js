@@ -20,7 +20,6 @@ app.get('/weather', async (request, response, next) => {
   try {
     const lat = request.query.lat;
     const lon = request.query.lon;
-    // const searchQuery = request.query.search_query;
     const weatherResponse = await axios.get(`https://api.weatherbit.io/v2.0/forecast/daily?lat=${lat}&lon=${lon}&key=${process.env.WEATHER_API_KEY}&units=I&days=3`);
     // const dataResult = weatherResponse.data.find(dataPoint => dataPoint?.city_name.toLowerCase().includes(searchQuery?.toLowerCase()));
     const dataResult = weatherResponse.data;
