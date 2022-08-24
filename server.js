@@ -13,6 +13,7 @@ const PORT = process.env.PORT || 3002;
 
 // Base Route
 app.get('/', (request, response) => {
+  response.send('hello')
   response.status(200).send('Welcome to the server!');
 });
 
@@ -20,11 +21,11 @@ app.get('/weather', async (request, response, next) => {
   try {
     const lat = request.query.lat;
     const lon = request.query.lon;
-    const searchQuery = request.query.search_query;
+    // const searchQuery = request.query.search_query;
     const weatherResponse = await axios.get(`https://api.weatherbit.io/v2.0/forecast/daily?lat=${lat}&lon=${lon}&key=${process.env.WEATHER_API_KEY}&units=I&days=3`);
     // const dataResult = weatherResponse.data.find(dataPoint => dataPoint?.city_name.toLowerCase().includes(searchQuery?.toLowerCase()));
-    const dataResult = weatherResponse.data
-    console.log(dataResult)
+    const dataResult = weatherResponse.data;
+    console.log(dataResult);
     const forecastArray = dataResult?.data.map(day => new Forecast(day));
     response.status(200).send(forecastArray);
   } catch (error) {
@@ -49,4 +50,4 @@ app.use((error, request, response, next) => {
   response.status(500).send(error.message);
 });
 
-app.listen(PORT, () => console.log(`Listening on PORT: ${PORT}`));
+app.listen(PORT, () => console.log(`Listening on PORT: ${PORT}. App should be functioning.`));
