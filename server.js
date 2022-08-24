@@ -21,9 +21,8 @@ app.get('/weather', (request, response, next) => {
     // const lat = request.query.lat;
     // const lon = request.query.lon;
     const searchQuery = request.query.search_query;
-    const dataResult = data.find(dataPoint => new RegExp(searchQuery, 'i').test(dataPoint.city_name));
-    const forecastArray = dataResult.data.map(day => new Forecast(day));
-    console.log(searchQuery);
+    const dataResult = data.find(dataPoint => dataPoint?.city_name.toLowerCase().includes(searchQuery?.toLowerCase()));
+    const forecastArray = dataResult?.data.map(day => new Forecast(day));
     response.status(200).send(forecastArray);
   } catch (error) {
     next(error);
