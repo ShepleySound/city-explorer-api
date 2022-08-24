@@ -28,6 +28,8 @@ This project is a first attempt at creating a back-end to be used in conjunction
 
 ***08-23-2022 3:00pm*** - Application is initialized and ready for development.  
 
+***08-23-2022 5:30PM*** - Application receives requests and sends a response with static data.
+
 ## Credit and Collaborations
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->
 
@@ -38,5 +40,7 @@ This project is a first attempt at creating a back-end to be used in conjunction
 | Feature Name | Estimated Time | Start Time | Finish Time |
 | ------------ | -------------- | ---------- | ----------- |
 | Repository/Project Setup | 30 Minutes | 2:45PM | 3:00PM |
-| Documentation Work | 30 Minutes | 3:00PM | 
+| Documentation Work | 30 Minutes | 3:00PM | 3:45PM |
+| Server creation | 1 Hour | 3:45PM | 5:30PM |
+
 
