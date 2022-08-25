@@ -29,10 +29,31 @@ app.get('/weather', async (request, response, next) => {
   }
 });
 
+app.get('/movies', async (request, response, next) => {
+  try {
+    const city = request.query.city;
+    const movieResponse = await axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.MOVIE_API_KEY}&query=${city}&page=1`);
+    const movieArray = movieResponse.data.results.map(element => new Movie(element)).splice(0, 3);
+    response.status(200).send(movieArray);
+  }
+  catch (error) {
+    next(error);
+  }
+})
+
 class Forecast {
   constructor(weatherObj) {
     this.date = weatherObj.datetime;
     this.description = weatherObj.weather.description;
+  }
+}
+
+class Movie {
+  constructor(movieObj) {
+    this.id = movieObj.id;
+    this.title = movieObj.title;
+    this.release_date = movieObj.release_date;
+    this.poster_url = movieObj.poster_path && `https://image.tmdb.org/t/p/w500${movieObj.poster_path}`;
   }
 }
 
