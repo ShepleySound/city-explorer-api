@@ -14,12 +14,13 @@ This project acts as the back-end server for my [City Explorer](https://github.c
 Back-End - [NodeJS](https://nodejs.org/)  
 Web Application Framework - [Express](https://expressjs.com/)
 External Weather API - [Weatherbit](https://www.weatherbit.io/api)
+External Movie Database API - [The Movie Database](https://developers.themoviedb.org/)
 
 This project is a first attempt at creating a back-end to be used in conjunction with the City Explorer front-end. It will take requests from the client, handle the querying of API's, parse any responses, and will return that data back to the client/front-end.
 
 <details><summary>Back-End Request Response Diagram</summary>
 
-![Back-End Request Response Diagram](docs/back-end_request-response.jpg)
+![Request Response Diagram](docs/cityexplorer-requestresponse-diagram.jpg)
 
 </details>
 
@@ -35,12 +36,14 @@ This project is a first attempt at creating a back-end to be used in conjunction
 
 ***08-24-2022 11:00PM*** - Application online. Heroku integration repaired. Will continue monitoring for errors.
 
+***08-25-2022 7:45AM*** - Application sends requests to The Movie Database API.
+
 ## Credit and Collaborations
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->
 
 ## Time Estimates
 
-### August 22, 2022
+### August 23, 2022
 
 | Feature Name | Estimated Time | Start Time | Finish Time |
 | ------------ | -------------- | ---------- | ----------- |
@@ -49,5 +52,8 @@ This project is a first attempt at creating a back-end to be used in conjunction
 | Server creation | 1 Hour | 3:45PM | 5:30PM |
 | Weather API Request/Response | 1 Hour | 6:30PM | 8PM |
 
+### August 25, 2022
 
-
+| Feature Name | Estimated Time | Start Time | Finish Time |
+| ------------ | -------------- | ---------- | ----------- |
+| Movie API Request/Response | Estimated Time | 1 Hour | 7:00AM | 7:45AM |
