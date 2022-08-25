@@ -53,7 +53,7 @@ class Movie {
     this.id = movieObj.id;
     this.title = movieObj.title;
     this.release_date = movieObj.release_date;
-    this.poster_url = movieObj.poster_path && `https://image.tmdb.org/t/p/w500${movieObj.poster_path}`;
+    this.poster_url = movieObj.backdrop_path && `https://image.tmdb.org/t/p/w780${movieObj.backdrop_path}`;
   }
 }
 
