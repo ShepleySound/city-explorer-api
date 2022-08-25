@@ -19,7 +19,7 @@ This project is a first attempt at creating a back-end to be used in conjunction
 
 <details><summary>Back-End Request Response Diagram</summary>
 
-![Back-End Request Response Diagram](docs/back-end_request-response.jpg)
+![Request Response Diagram](docs/cityexplorer-requestresponse-diagram.jpg)
 
 </details>
 
@@ -40,7 +40,7 @@ This project is a first attempt at creating a back-end to be used in conjunction
 
 ## Time Estimates
 
-### August 22, 2022
+### August 23, 2022
 
 | Feature Name | Estimated Time | Start Time | Finish Time |
 | ------------ | -------------- | ---------- | ----------- |
@@ -49,5 +49,7 @@ This project is a first attempt at creating a back-end to be used in conjunction
 | Server creation | 1 Hour | 3:45PM | 5:30PM |
 | Weather API Request/Response | 1 Hour | 6:30PM | 8PM |
 
-
-
+### August 25, 2022
+| Feature Name | Estimated Time | Start Time | Finish Time |
+| ------------ | -------------- | ---------- | ----------- |
+| Movie API Request/Response | Estimated Time | 1 Hour | 7:00AM | 7:45AM |

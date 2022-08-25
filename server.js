@@ -33,13 +33,13 @@ app.get('/movies', async (request, response, next) => {
   try {
     const city = request.query.city;
     const movieResponse = await axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.MOVIE_API_KEY}&query=${city}&page=1`);
-    const movieArray = movieResponse.data.results.map(element => new Movie(element)).splice(0, 3);
+    const movieArray = movieResponse.data.results.map(element => new Movie(element)).splice(0, 8);
     response.status(200).send(movieArray);
   }
   catch (error) {
     next(error);
   }
-})
+});
 
 class Forecast {
   constructor(weatherObj) {
