@@ -12,7 +12,8 @@ This project acts as the back-end server for my [City Explorer](https://github.c
 ## Architecture
 <!-- Provide a detailed description of the application design. What technologies (languages, libraries, etc) you're using, and any other relevant design information. -->
 Back-End - [NodeJS](https://nodejs.org/)  
-Web Application Framework - [Express](https://expressjs.com/)  
+Web Application Framework - [Express](https://expressjs.com/)
+External Weather API - [Weatherbit](https://www.weatherbit.io/api)
 
 This project is a first attempt at creating a back-end to be used in conjunction with the City Explorer front-end. It will take requests from the client, handle the querying of API's, parse any responses, and will return that data back to the client/front-end.
 
@@ -30,6 +31,10 @@ This project is a first attempt at creating a back-end to be used in conjunction
 
 ***08-23-2022 5:30PM*** - Application receives requests and sends a response with static data.
 
+***08-23-2022 5:30PM*** - Application receives requests and sends a response using the WeatherBit API.
+
+***08-24-2022 11:00PM*** - Application online. Heroku integration repaired. Will continue monitoring for errors.
+
 ## Credit and Collaborations
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->
 
@@ -42,5 +47,7 @@ This project is a first attempt at creating a back-end to be used in conjunction
 | Repository/Project Setup | 30 Minutes | 2:45PM | 3:00PM |
 | Documentation Work | 30 Minutes | 3:00PM | 3:45PM |
 | Server creation | 1 Hour | 3:45PM | 5:30PM |
+| Weather API Request/Response | 1 Hour | 6:30PM | 8PM |
+
 
 
