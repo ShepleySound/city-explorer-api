@@ -20,6 +20,8 @@ This project is a first attempt at creating a back-end to be used in conjunction
 
 <details><summary>Back-End Request Response Diagram</summary>
 
+![Request Response Diagram](docs/back-end_request-response_v1.jpg)
+
 ![Request Response Diagram](docs/cityexplorer-requestresponse-diagram.jpg)
 
 </details>
