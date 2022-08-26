@@ -16,11 +16,12 @@ app.get('/', (request, response) => {
   response.status(200).send('Welcome to the server!');
 });
 
+// API Docs - https://www.weatherbit.io/api
 app.get('/weather', async (request, response, next) => {
   try {
     const lat = request.query.lat;
     const lon = request.query.lon;
-    const weatherResponse = await axios.get(`https://api.weatherbit.io/v2.0/forecast/daily?lat=${lat}&lon=${lon}&key=${process.env.WEATHER_API_KEY}&units=I&days=3`);
+    const weatherResponse = await axios.get(`https://api.weatherbit.io/v2.0/forecast/daily?lat=${lat}&lon=${lon}&key=${process.env.WEATHER_API_KEY}&units=I&days=14`);
     const dataResult = weatherResponse?.data;
     const forecastArray = dataResult?.data.map(day => new Forecast(day));
     response.status(200).send(forecastArray);
@@ -29,6 +30,7 @@ app.get('/weather', async (request, response, next) => {
   }
 });
 
+// API Docs - https://developers.themoviedb.org/3/getting-started
 app.get('/movies', async (request, response, next) => {
   try {
     const city = request.query.city;
@@ -43,8 +45,13 @@ app.get('/movies', async (request, response, next) => {
 
 class Forecast {
   constructor(weatherObj) {
-    this.date = weatherObj.datetime;
+    this.date = weatherObj.valid_date;
     this.description = weatherObj.weather.description;
+    this.icon = weatherObj.weather.icon;
+    this.lowTemp = weatherObj.low_temp;
+    this.highTemp = weatherObj.high_temp;
+    this.pop = weatherObj.pop; 
+    this.humidity = weatherObj.rh;
   }
 }
 
@@ -52,6 +59,7 @@ class Movie {
   constructor(movieObj) {
     this.id = movieObj.id;
     this.title = movieObj.title;
+    this.description = movieObj.overview;
     this.release_date = movieObj.release_date;
     this.poster_url = movieObj.backdrop_path && `https://image.tmdb.org/t/p/w780${movieObj.backdrop_path}`;
   }
