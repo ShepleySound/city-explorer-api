@@ -38,6 +38,8 @@ This project is a first attempt at creating a back-end to be used in conjunction
 
 ***08-25-2022 7:45AM*** - Application sends requests to The Movie Database API.
 
+***08-25-2022 8:30PM*** - Back-End is modularized and successfully communicates with the Front-End.
+
 ## Credit and Collaborations
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->
 
@@ -57,3 +59,4 @@ This project is a first attempt at creating a back-end to be used in conjunction
 | Feature Name | Estimated Time | Start Time | Finish Time |
 | ------------ | -------------- | ---------- | ----------- |
 | Movie API Request/Response | Estimated Time | 1 Hour | 7:00AM | 7:45AM |
+| Modularize/Refactor | Estimated Time | 2 Hours | 5PM | 7:45PM |
