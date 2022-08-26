@@ -22,6 +22,7 @@ async function getWeather(req, res, next) {
   }
 }
 
+// Class for cleaning up response from Weatherbit API.
 class Weather {
   constructor(weatherObj) {
     this.date = weatherObj.valid_date;
