@@ -9,10 +9,17 @@ async function getMovies(req, res, next) {
     // Front-End sends a query for the city name when making a movie request.
     const city = req.query.city;
 
-    // Use city query to create a URL to make a request to the Movie Database API.
-    const url = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.MOVIE_API_KEY}&query=${city}&page=1`;
+    const baseUrl = 'https://api.themoviedb.org/3/search/movie';
 
-    const movieResponse = await axios.get(url);
+    // Use API Key and city query to create a URL to make a request to the Movie Database API.
+    const params = {
+      api_key: process.env.MOVIE_API_KEY,
+      query: city,
+      page: 1,
+
+    };
+
+    const movieResponse = await axios.get(baseUrl, { params });
     const movieArray = movieResponse.data.results.map(element => new Movie(element)).splice(0, 8);
 
     res.status(200).send(movieArray);

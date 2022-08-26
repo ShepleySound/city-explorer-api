@@ -9,11 +9,15 @@ async function getWeather(req, res, next) {
     // Front-End sends a latitude and longitude when making a weather request.
     const lat = req.query.lat;
     const lon = req.query.lon;
+    const baseUrl = 'https://api.weatherbit.io/v2.0/forecast/daily';
+    // Use API Key, lat, & lon to create a URL to make a request to the Weatherbit API.
+    const params = {
+      key: process.env.WEATHER_API_KEY,
+      lat: lat,
+      lon: lon,
+    };
 
-    // Use lat & lon to create a URL to make a request to the Weatherbit API.
-    const url = `https://api.weatherbit.io/v2.0/forecast/daily?lat=${lat}&lon=${lon}&key=${process.env.WEATHER_API_KEY}&units=I&days=14`;
-
-    const weatherResults = await axios.get(url);
+    const weatherResults = await axios.get(baseUrl, { params });
 
     const forecastArray = weatherResults?.data.data.map(day => new Weather(day));
     res.status(200).send(forecastArray);

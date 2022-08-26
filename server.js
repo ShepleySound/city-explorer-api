@@ -28,9 +28,12 @@ app.get('*', (req, res) => {
 });
 
 
+// ERRORS
 // eslint-disable-next-line no-unused-vars
 app.use((err, req, res, next) => {
+  console.log(err.message);
   res.status(500).send(err.message);
 });
 
+// LISTEN
 app.listen(PORT, () => console.log(`Listening on PORT: ${PORT}. App should be functioning.`));
