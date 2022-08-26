@@ -8,7 +8,7 @@ const axios = require('axios').default;
 const app = express();
 
 app.use(cors());
-
+const getWeather = require('./modules/weather.js');
 const PORT = process.env.PORT || 3002;
 
 // Base Route
@@ -17,18 +17,7 @@ app.get('/', (request, response) => {
 });
 
 // API Docs - https://www.weatherbit.io/api
-app.get('/weather', async (request, response, next) => {
-  try {
-    const lat = request.query.lat;
-    const lon = request.query.lon;
-    const weatherResponse = await axios.get(`https://api.weatherbit.io/v2.0/forecast/daily?lat=${lat}&lon=${lon}&key=${process.env.WEATHER_API_KEY}&units=I&days=14`);
-    const dataResult = weatherResponse?.data;
-    const forecastArray = dataResult?.data.map(day => new Forecast(day));
-    response.status(200).send(forecastArray);
-  } catch (error) {
-    next(error);
-  }
-});
+app.get('/weather', getWeather);
 
 // API Docs - https://developers.themoviedb.org/3/getting-started
 app.get('/movies', async (request, response, next) => {
@@ -43,17 +32,7 @@ app.get('/movies', async (request, response, next) => {
   }
 });
 
-class Forecast {
-  constructor(weatherObj) {
-    this.date = weatherObj.valid_date;
-    this.description = weatherObj.weather.description;
-    this.icon = weatherObj.weather.icon;
-    this.lowTemp = weatherObj.low_temp;
-    this.highTemp = weatherObj.high_temp;
-    this.pop = weatherObj.pop; 
-    this.humidity = weatherObj.rh;
-  }
-}
+
 
 class Movie {
   constructor(movieObj) {
