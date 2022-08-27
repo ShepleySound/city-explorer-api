@@ -5,6 +5,7 @@ const express = require('express');
 const cors = require('cors');
 const getWeather = require('./modules/weather.js');
 const getMovies = require('./modules/movies.js');
+const getLocation = require('./modules/location.js');
 
 const app = express();
 
@@ -16,6 +17,8 @@ app.use(cors());
 app.get('/', (req, res) => {
   res.status(200).send('Welcome to the server!');
 });
+
+app.get('/location', getLocation);
 
 // API Docs - https://www.weatherbit.io/api
 app.get('/weather', getWeather);
