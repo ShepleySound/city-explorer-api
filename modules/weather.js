@@ -1,6 +1,8 @@
 'use strict';
 
 const axios = require('axios');
+const cache = require('./cache.js').cache;
+
 
 // API Docs - https://www.weatherbit.io/api
 async function getWeather(req, res, next) {
@@ -16,11 +18,23 @@ async function getWeather(req, res, next) {
       lat: lat,
       lon: lon,
     };
+    const key = `${lat}${lon}weatherSearch`;
 
-    const weatherResults = await axios.get(baseUrl, { params });
+    if (cache.isCached(key) && !cache.isExpired(key)) {
+      // Pull data from cache
+      const forecastArray = cache.get(key).data;
+      // Send data back to front-end
+      res.status(200).send(forecastArray);
+    } else {
+      // Request new data from API
+      const weatherResults = await axios.get(baseUrl, { params });
+      const forecastArray = weatherResults?.data.data.map(day => new Weather(day));
+      // Set new data in cache
+      cache.set(key, forecastArray);
 
-    const forecastArray = weatherResults?.data.data.map(day => new Weather(day));
-    res.status(200).send(forecastArray);
+      // Send data back to front-end
+      res.status(200).send(forecastArray);
+    }
   } catch (error) {
     next(error);
   }

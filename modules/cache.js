@@ -7,14 +7,12 @@ class Cache {
 
   get(key) {
     if (this.isCached(key)) {
-      console.log("GET DATA");
       this.cache[key].timeStamp = Date.now();
       return this.cache[key];
     } else return;
   }
 
   set(key, data) {
-    console.log("SET DATA")
     this.cache[key] = {
       data: data,
       timeStamp: Date.now(),
