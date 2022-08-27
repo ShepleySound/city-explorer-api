@@ -1,11 +1,12 @@
 'use strict';
 
 const axios = require('axios');
+const cache = require('./cache.js').cache;
+
 
 // API Docs - https://developers.themoviedb.org/3/getting-started
 async function getMovies(req, res, next) {
   try {
-
     // Front-End sends a query for the city name when making a movie request.
     const city = req.query.city;
 
@@ -16,13 +17,25 @@ async function getMovies(req, res, next) {
       api_key: process.env.MOVIE_API_KEY,
       query: city,
       page: 1,
-
     };
+    const key = `${city}movieSearch`;
 
-    const movieResponse = await axios.get(baseUrl, { params });
-    const movieArray = movieResponse.data.results.map(element => new Movie(element)).splice(0, 8);
+    if (cache.isCached(key) && !cache.isExpired(key)) {
+      // Pull data from cache
+      const movieArray = cache.get(key).data;
+      // Send data back to front-end
+      res.status(200).send(movieArray);
+    } else {
+      // Request new data from API
+      const movieResponse = await axios.get(baseUrl, { params });
+      const movieArray = movieResponse.data.results.map(element => new Movie(element)).splice(0, 8);
+      // Set new data in cache
+      cache.set(key, movieArray);
 
-    res.status(200).send(movieArray);
+      // Send data back to front-end
+      res.status(200).send(movieArray);
+    }
+
   } catch (error) {
     next(error);
   }
@@ -40,6 +53,3 @@ class Movie {
 }
 
 module.exports = getMovies;
-
-
-

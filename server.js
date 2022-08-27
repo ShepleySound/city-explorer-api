@@ -9,6 +9,7 @@ const getMovies = require('./modules/movies.js');
 const app = express();
 
 const PORT = process.env.PORT || 3002;
+
 app.use(cors());
 
 // Base Route
@@ -27,7 +28,6 @@ app.get('*', (req, res) => {
   res.status(404).send('Sorry! This does not exist!');
 });
 
-
 // ERRORS
 // eslint-disable-next-line no-unused-vars
 app.use((err, req, res, next) => {
@@ -37,3 +37,4 @@ app.use((err, req, res, next) => {
 
 // LISTEN
 app.listen(PORT, () => console.log(`Listening on PORT: ${PORT}. App should be functioning.`));
+
