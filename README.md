@@ -1,4 +1,4 @@
-# City Explorer API
+# City Explorer API ( IN DEVELOPMENT )
 
 **Author**: Robert Shepley  
 ![Version](https://img.shields.io/github/package-json/v/shepleysound/city-explorer-api)
